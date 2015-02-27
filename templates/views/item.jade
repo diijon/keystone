@@ -23,7 +23,7 @@ block content
 		h2.relationship-heading.form-heading Relationships
 			each rel in relationships
 				if rel.items.results.length
-					h3.form-heading.relationship-heading: a(href='/keystone/' + rel.list.path)= (rel.label) ? rel.label : rel.list.label
+					h3.form-heading.relationship-heading: a(href='/keystone/' + rel.tenant + '/' + rel.list.path)= (rel.label) ? rel.label : rel.list.label
 					if rel.note
 						.field-note= rel.note
 					- var firstColspan = 1

@@ -18,7 +18,7 @@ exports = module.exports = function(req, res) {
 		
 		if (!item) {
 			req.flash('error', 'Item ' + req.params.item + ' could not be found.');
-			return res.redirect('/keystone/' + req.list.path);
+			return res.redirect('/keystone/' + req.tenant + '/' + req.list.path);
 		}
 		
 		var viewLocals = {
@@ -75,7 +75,7 @@ exports = module.exports = function(req, res) {
 									list: refList.getOptions(),
 									items: _.map(results, function(i) { return {
 										label: refList.getDocumentName(i),
-										href: '/keystone/' + refList.path + '/' + i.id
+										href: '/keystone/' + req.tenant + '/' + refList.path + '/' + i.id
 									};}),
 									more: (more) ? true : false
 								});
@@ -93,7 +93,7 @@ exports = module.exports = function(req, res) {
 									list: refList.getOptions(),
 									items: [{
 										label: refList.getDocumentName(result),
-										href: '/keystone/' + refList.path + '/' + result.id
+										href: '/keystone/' + req.tenant + '/' + refList.path + '/' + result.id
 									}]
 								});
 							}
@@ -154,6 +154,7 @@ exports = module.exports = function(req, res) {
 					title: appName + ': ' + req.list.singular + ': ' + req.list.getDocumentName(item),
 					page: 'item',
 					list: req.list,
+					tenant: req.tenant,
 					item: item,
 					drilldown: drilldown,
 					relationships: relationships,
@@ -177,7 +178,7 @@ exports = module.exports = function(req, res) {
 					return renderView();
 				}
 				req.flash('success', 'Your changes have been saved.');
-				return res.redirect('/keystone/' + req.list.path + '/' + item.id);
+				return res.redirect('/keystone/' + req.tenant + '/' + req.list.path + '/' + item.id);
 			});
 			
 			

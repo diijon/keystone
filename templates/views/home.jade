@@ -12,7 +12,7 @@ block content
 					if list.external
 						- path = list.path
 					else
-						- path = '/keystone/' + list.path
+						- path = '/keystone/' + tenant + '/' + list.path
 					h3: a(href=path)= list.label
 		else
 			each navSection in nav.sections
@@ -22,10 +22,10 @@ block content
 						if list.external
 							- path = list.path
 						else
-							- path = '/keystone/' + list.path
+							- path = '/keystone/' + tenant + '/' + list.path
 						li: a(href=path)= list.label
 			if orphanedLists.length
 				.nav-section
 					h4 Other
 					ul: each list in orphanedLists
-						li: a(href='/keystone/' + list.path)= list.label
+						li: a(href='/keystone/' + tenant + '/' + list.path)= list.label
