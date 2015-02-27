@@ -24,6 +24,7 @@ keystone.init({
 	'auth': function(req, res, next){
 		//TODO: add custom authentication if desired
 		//TODO: validate and/or authorize req.tenant, call next() if tenant allowed, or redirect
+		
 		next();
 	},
 
@@ -31,12 +32,6 @@ keystone.init({
 
 	'mongoose' : mongoose,
 	'multitenant map': tenants,
-	'multitenant default': 'tenant1',
-	'multitenant find': function(req, res, next){
-		var selectedTenant = req.tenant;
-
-		//TODO: override tenant retrieval by looking somewhere else? cookie? local storage? database?
-		return selectedTenant;
-	}
+	'multitenant default': 'tenant1'
 });
 ```
