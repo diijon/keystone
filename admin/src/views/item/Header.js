@@ -60,7 +60,8 @@ var Header = React.createClass({
 	
 	renderDrilldownItems: function() {
 		
-		var list = this.props.list,
+		var tenant = this.props.tenant,
+			list = this.props.list,
 			items = this.props.drilldown.items;
 		
 		var els = items.map(function(dd) {
@@ -89,7 +90,7 @@ var Header = React.createClass({
 		
 		els.push(
 			<li key="back">
-				<a href={'/keystone/' + list.path} title={'Back to ' + list.plural}>
+				<a href={'/keystone/' + tenant + '/' + list.path} title={'Back to ' + list.plural}>
 					{backIcon}
 					{list.plural}
 				</a>
@@ -102,11 +103,12 @@ var Header = React.createClass({
 	
 	renderSearch: function() {
 		if (!this.state.searchIsVisible) return null;
-		var list = this.props.list;
+		var tenant = this.props.tenant,
+			list = this.props.list;
 		var submitButtonClass = 'btn ' + (this.state.searchIsFocused ? 'btn-primary' : 'btn-default');
 		return (
 			<div className="searchbox" key="search">
-				<form action={'/keystone/' + list.path} className="form-inline searchbox-form">
+				<form action={'/keystone/' + tenant + '/' + list.path} className="form-inline searchbox-form">
 					<div className="searchbox-field">
 						<input
 							ref="searchField"

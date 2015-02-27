@@ -20,6 +20,7 @@ html
 		block head
 
 	body(id='page-' + page)
+		input(id='tenant',type='hidden',name='tenant',value='#{tenant}')
 		#wrap
 			nav(role='navigation')#header.navbar.navbar-default.navbar-static-top: .container
 				a(href=backUrl).navbar-backtobrand-trigger.hidden-xs: span.ion-arrow-left-c
@@ -41,7 +42,7 @@ html
 							if navSection.lists[0].external
 								- path = navSection.lists[0].path
 							else
-								- path = '/keystone/' + navSection.lists[0].path
+								- path = '/keystone/' + tenant + '/' + navSection.lists[0].path
 
 							li(class=section.key == navSection.key ? 'active' : null): a(href=path)= navSection.label
 			if section.lists && section.lists.length > 1
@@ -62,7 +63,7 @@ html
 								if navList.external
 									- path = navList.path
 								else
-									- path = '/keystone/' + navList.path
+									- path = '/keystone/' + tenant + '/' + navList.path
 									
 								li(class=navList.key == list.key ? 'active' : null): a(href=path)= navList.label
 			#body: .container

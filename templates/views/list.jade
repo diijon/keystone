@@ -8,6 +8,7 @@ block js
 	script(src='/keystone/js/lib/browserified/querystring.js')
 	script(src='/keystone/js/lib/browserified/queryfilter.js')
 	script.
+		Keystone.tenant = "#{tenant}";
 		Keystone.list = !{JSON.stringify(list.getOptions())};
 		Keystone.wysiwyg = { options: !{JSON.stringify(wysiwygOptions)} };
 		

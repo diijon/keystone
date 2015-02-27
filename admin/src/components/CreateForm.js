@@ -65,11 +65,12 @@ var Form = React.createClass({
 	},
 	
 	render: function() {
-		
+		console.log("CreatForm:props: ", this.props);
 		var errors = null,
 			form = {},
 			list = this.props.list,
-			formAction = '/keystone/' + list.path,
+			tenant = this.props.tenant,
+			formAction = '/keystone/' + tenant + '/' + list.path,
 			nameField = this.props.list.nameField,
 			focusRef;
 		

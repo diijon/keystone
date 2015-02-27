@@ -171,6 +171,9 @@ exports = module.exports = function(req, res) {
 		})();
 		
 	} else if (!req.list.get('nodelete') && req.query['delete']) {
+
+		console.log("views/list.js:req.tenant:", req.tenant);
+		console.log("views/list.js:req.list.model:", req.list.model);
 		
 		if (!checkCSRF()) return renderView();
 		
@@ -181,7 +184,6 @@ exports = module.exports = function(req, res) {
 		
 		req.list.model.findById(req.query['delete']).exec(function (err, item) {
 			if (err || !item) return res.redirect('/keystone/' + req.tenant + '/' + req.list.path);
-			
 			item.remove(function (err) {
 				if (err) {
 					console.log('Error deleting ' + req.list.singular);

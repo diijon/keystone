@@ -6,6 +6,7 @@ jQuery(function($) {
 	
 	// Cache items
 	var $filters = $('#list-filters');
+	var tenant = $('input#tenant').val();
 	
 	// Autofocus the search field if there has been a search
 	
@@ -276,6 +277,7 @@ jQuery(function($) {
 		}
 	}).on('click', 'tr a.control-delete', function(e) {
 		e.preventDefault();
+		
 		if (!confirm('Are you sure you want to delete this ' + Keystone.list.singular.toLowerCase() + '?')) {
 			return false;
 		}
@@ -294,7 +296,7 @@ jQuery(function($) {
 			alert(errorMessage);
 			$row.removeClass('delete-inprogress');
 		};
-		$.ajax('/keystone/api/' + Keystone.list.path + '/delete', {
+		$.ajax('/keystone/api/' + tenant + '/' + Keystone.list.path + '/delete', {
 			data: Keystone.csrf({
 				id: $row.attr('id')
 			}),
@@ -317,7 +319,7 @@ jQuery(function($) {
 				}
 
 				if (Keystone.items.currentPage > Keystone.items.totalPages) {
-					window.location.href = '/keystone/' + Keystone.list.path + '/' + Keystone.items.previous;
+					window.location.href = '/keystone/' + tenant + '/' + Keystone.list.path + '/' + Keystone.items.previous;
 					return;
 				}
 
@@ -334,7 +336,7 @@ jQuery(function($) {
 						Keystone.items.last = Keystone.items.total;
 						$('.list-pagination .count').text('Showing ' + Keystone.items.first + ' to ' + Keystone.items.last + ' of ' + Keystone.items.total);
 					} else {
-						$.ajax('/keystone/api/' + Keystone.list.path + '/fetch', {
+						$.ajax('/keystone/api/' + tenant + '/' + Keystone.list.path + '/fetch', {
 							data: Keystone.csrf({
 								items: { 
 									first: Keystone.items.first,

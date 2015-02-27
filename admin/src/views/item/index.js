@@ -21,15 +21,15 @@ var View = React.createClass({
 	
 	renderCreateForm: function() {
 		if (!this.state.createIsVisible) return null;
-		return <CreateForm list={Keystone.list} animate onCancel={this.toggleCreate.bind(this, false)} />
+		return <CreateForm tenant={Keystone.tenant} list={Keystone.list} animate onCancel={this.toggleCreate.bind(this, false)} />
 	},
 	
 	render: function() {
 		return (
 			<div>
 				{this.renderCreateForm()}
-				<Header list={Keystone.list} data={Keystone.item} drilldown={Keystone.drilldown} toggleCreate={this.toggleCreate} />
-				<EditForm list={Keystone.list} data={Keystone.item} />
+				<Header tenant={Keystone.tenant} list={Keystone.list} data={Keystone.item} drilldown={Keystone.drilldown} toggleCreate={this.toggleCreate} />
+				<EditForm tenant={Keystone.tenant} list={Keystone.list} data={Keystone.item} />
 			</div>
 		);
 	}

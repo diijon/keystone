@@ -165,7 +165,7 @@ exports = module.exports = function(req, res) {
 		break;
 
 		case 'delete':
-
+			
 			if (!keystone.security.csrf.validate(req)) {
 				return sendError('invalid csrf');
 			}
