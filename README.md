@@ -31,7 +31,7 @@ keystone.init({
 
 	'mongoose' : mongoose,
 	'multitenant map': tenants,
-	'multitenant default': 'cvb',
+	'multitenant default': 'tenant1',
 	'multitenant find': function(req, res, next){
 		var selectedTenant = req.tenant;
 
